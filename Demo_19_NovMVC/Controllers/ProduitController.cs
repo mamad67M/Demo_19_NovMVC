@@ -36,6 +36,7 @@ namespace Demo_19_NovMVC.Controllers
             {
                 _db.Produits.Add(p);
                 _db.SaveChanges();
+                TempData["success"] = " le produit a été créé avec succes";
                 return RedirectToAction("Index");
             }
 
@@ -66,11 +67,45 @@ namespace Demo_19_NovMVC.Controllers
             {
                 _db.Produits.Update(p);
                 _db.SaveChanges();
+                TempData["success"] = " le produit a été modifié avec succes";
+
                 return RedirectToAction("Index");
             }
 
             return View(p);
         }
 
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+            Produit p = _db.Produits.SingleOrDefault(p => p.ProduitID == id);
+            if (p == null)
+            {
+                return NotFound();
+
+            }
+            return View(p);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Produit p)
+        {
+            var deletedP = _db.Produits.Find(p.ProduitID);
+
+            if (deletedP !=null)
+            {
+                _db.Produits.Remove(deletedP);
+                _db.SaveChanges();
+                TempData["success"] = " le produit a été supprimé avec succes";
+
+                return RedirectToAction("Index");
+            }
+
+            return View(deletedP);
+        }
     }
 }

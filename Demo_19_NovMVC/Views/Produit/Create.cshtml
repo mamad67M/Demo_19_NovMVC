@@ -3,7 +3,7 @@
     ViewData["Title"] = "Create";
 }
 
-
+<br />
 <form method="post" action="Create">
     <div class="border pt-3 p-3">
 
@@ -15,12 +15,14 @@
         <div class="pb-3">
             <label>Description</label>
             <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
 
         </div>
 
         <div class="pb-3">
             <label>Prix</label>
             <input asp-for="Prix" class="form-control" />
+            <span asp-validation-for="Prix" class="text-danger"></span>
 
         </div>
 
