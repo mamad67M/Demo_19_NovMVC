@@ -1,0 +1,28 @@
+﻿@model Produit
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4 class="text-primary">Edit</h4>
+
+<form method="post" action="Edit">
+    <div class="border pt-3 p-3">
+        <div class="pb-3">
+            <label>Description</label>
+            <input asp-for="Description" class="form-control" />
+
+        </div>
+
+        <div class="pb-3">
+            <label>Prix</label>
+            <input asp-for="Prix" class="form-control" />
+
+        </div>
+
+        <button type="submit" class="btn btn-success mx-1 " style="width: 150px">Update</button>
+        <a asp-controller="Produit" asp-action="Index" class="btn btn-secondary mx-1 " style="width: 150px">BackToList</a>
+
+
+    </div>
+
+</form>

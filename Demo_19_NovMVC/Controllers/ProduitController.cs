@@ -21,5 +21,56 @@ namespace Demo_19_NovMVC.Controllers
             IEnumerable<Produit> ListProd = _db.Produits;
             return View(ListProd);
         }
+
+        // Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Produit p)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Produits.Add(p);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(p);
+        }
+
+        // Edit
+        [HttpGet]
+        public IActionResult Edit(int ? id)
+        {
+            if (id ==0 || id ==null)
+            {
+                return NotFound();
+            }
+            Produit p = _db.Produits.SingleOrDefault(p => p.ProduitID ==id);
+            if (p ==null)
+            {
+                return NotFound();
+
+            }
+            return View(p);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Produit p)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Produits.Update(p);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(p);
+        }
+
     }
 }

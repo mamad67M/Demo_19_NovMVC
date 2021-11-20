@@ -56,7 +56,7 @@ namespace Demo_19_NovMVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Produit}/{action=Index}/{id?}");
             });
         }
     }
